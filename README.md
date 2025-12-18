@@ -1,32 +1,76 @@
-# Spring Boot Template
+# API Bancaria para Cajeros Automáticos
 
-This is a Spring Boot template that can be customized as per your requirements.
+Este repositorio es un **fork** del proyecto base entregado para la prueba técnica de desarrollo backend en **Java / Spring Boot**.  
+El objetivo es implementar una primera versión funcional de la API que permita a los clientes del banco realizar operaciones desde cajeros automáticos propios y de otras entidades.
 
-## Getting Started
+## 🛠️ Tecnologías
+- Java 21 (LTS)
+- Spring Boot 3.1
+- Spring Data JPA
+- Base de datos H2 (para desarrollo y pruebas)
+- Git Flow (rama `develop` + ramas `feature/*`)
+- JUnit / Spring Boot Test
+- Docker (para despliegue)
+- GitHub Actions (CI/CD)
 
-To start using this Spring Boot template, follow these steps:
+## 📌 Flujo de trabajo
+- La rama principal es **main** (código estable).
+- Se crea la rama **develop** para integrar nuevas funcionalidades.
+- Cada funcionalidad se desarrolla en ramas **feature/** independientes y se integra mediante Pull Requests hacia `develop`.
 
-1. Clone or download the template repository.
-2. Open the project in your preferred Integrated Development Environment (IDE).
-3. Customize the project by modifying the source code, configurations, and dependencies as necessary.
-4. Build and run the project using the provided build tools, such as Maven or Gradle.
+## 🚀 Cómo ejecutar
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/TU_USUARIO/spring-boot-template.git
+   cd spring-boot-template
+   ```
 
-## Documentation
+2. Arrancar la aplicación:
+   ```bash
+   mvn spring-boot:run
+   ```
 
-For detailed documentation, tutorials, and examples on how to work with Spring Boot, please refer to the official Spring Boot website: [https://spring.io/projects/spring-boot](https://spring.io/projects/spring-boot)
+3. Acceder a la consola H2:
 
-## Community and Support
+    - URL: http://localhost:8080/h2-console
 
-Join the Spring Boot community to connect with other developers and get support:
+    - JDBC URL: jdbc:h2:mem:bankdb
 
-- [Spring Boot Forum](https://community.spring.io/forum/spring-boot)
-- [Stack Overflow](https://stackoverflow.com/questions/tagged/spring-boot)
-- [GitHub Issues](https://github.com/spring-projects/spring-boot/issues)
+## 📑 Especificaciones de negocio
+La API debe permitir a un cliente del banco:
 
-## License
+- Consultar movimientos de sus cuentas (ingresos, retiradas, comisiones, transferencias).
 
-This Spring Boot template is provided under the [Apache 2.0 license](https://github.com/spring-projects/spring-boot/blob/main/LICENSE.txt).
+- Retirar dinero según el tipo de tarjeta (débito/crédito) y límites configurados.
 
----
+- Ingresar dinero únicamente en cajeros del mismo banco.
 
-Feel free to customize and adapt this Spring Boot template to suit your needs. Happy coding!
+- Realizar transferencias a cuentas del mismo o de otros bancos (validando IBAN y comisiones).
+
+- Activar su tarjeta en el primer uso (requisito previo a cualquier operación).
+
+- Cambiar su código PIN (obligatorio tras la activación inicial).
+
+- Consultar y modificar la configuración de su tarjeta (límite de retiro entre 500 y 6.000 €).
+
+
+## 🔒 Consideraciones técnicas
+- El PIN no debe almacenarse en texto plano.
+
+- Se implementarán tests unitarios e integración.
+
+- Se valorará la integración continua (CI/CD) y despliegue con Docker.
+
+- Se priorizarán las funcionalidades de mayor valor en el tiempo disponible.
+
+
+## ✅ Estado actual
+- Proyecto base con configuración inicial de Spring Boot.
+
+- Configuración de base de datos H2.
+
+- Flujo Git Flow preparado para desarrollo.
+
+- Actualizado a Java 21.
+
+
