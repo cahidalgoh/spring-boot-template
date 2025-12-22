@@ -30,11 +30,8 @@ public class WithdrawServiceImpl implements WithdrawService {
     @Transactional
     public Transaction withdraw(String cardNumber, Long atmId, BigDecimal amount) {
 
-        Card card = cardRepository.findByCardNumber(cardNumber);
-
-        if (card == null) {
-            throw new IllegalArgumentException("Tarjeta no encontrada");
-        }
+        Card card = cardRepository.findByCardNumber(cardNumber)
+                .orElseThrow(() -> new IllegalArgumentException("Tarjeta no encontrada"));
 
         ATM atm = atmRepository.findById(atmId).orElseThrow();
         Account account = card.getAccount();
