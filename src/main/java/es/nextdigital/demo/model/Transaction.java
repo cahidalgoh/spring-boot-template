@@ -23,6 +23,11 @@ public class Transaction {
 
     @Column(precision = 19, scale = 2)
     private BigDecimal amount;
+
+    // Para registrar la comisión aplicada en transferencias interbancarias
+    @Column(precision = 19, scale = 2)
+    private BigDecimal commission;
+
     private LocalDateTime timestamp;
 
     @ManyToOne

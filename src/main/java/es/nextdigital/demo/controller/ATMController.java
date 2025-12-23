@@ -2,10 +2,12 @@ package es.nextdigital.demo.controller;
 
 import es.nextdigital.demo.dto.DepositRequestDTO;
 import es.nextdigital.demo.dto.TransactionDTO;
+import es.nextdigital.demo.dto.TransferRequestDTO;
 import es.nextdigital.demo.dto.WithdrawRequestDTO;
 import es.nextdigital.demo.mapper.TransactionMapper;
 import es.nextdigital.demo.model.Transaction;
 import es.nextdigital.demo.service.DepositService;
+import es.nextdigital.demo.service.TransferService;
 import es.nextdigital.demo.service.WithdrawService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ public class ATMController {
 
     private final WithdrawService withdrawService;
     private final DepositService depositService;
+    private final TransferService transferService;
 
     @PostMapping("/{atmId}/withdraw")
     public TransactionDTO withdraw(@PathVariable Long atmId,
@@ -37,4 +40,16 @@ public class ATMController {
         Transaction tx = depositService.deposit(request.getCardNumber(), atmId, request.getAmount());
         return TransactionMapper.toDTO(tx);
     }
+
+    @PostMapping("/transfer")
+    public TransactionDTO transfer(@RequestBody TransferRequestDTO request) {
+        Transaction tx = transferService.transfer(
+                request.getCardNumber(),
+                request.getDestinationIban(),
+                request.getAmount()
+        );
+        return TransactionMapper.toDTO(tx);
+    }
+
+
 }

@@ -23,6 +23,8 @@ public class Account {
     @Column(precision = 19, scale = 2)
     private BigDecimal balance;
 
+    private String bankId;
+
     @JsonIgnore
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private List<Transaction> transactions;
