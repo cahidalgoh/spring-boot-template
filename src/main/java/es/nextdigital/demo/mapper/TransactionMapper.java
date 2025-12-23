@@ -12,6 +12,7 @@ public class TransactionMapper {
         dto.setId(tx.getId());
         dto.setType(tx.getType().name());
         dto.setAmount(tx.getAmount());
+        dto.setCommission(tx.getCommission());
         dto.setTimestamp(tx.getTimestamp());
         dto.setAccount(toDTO(tx.getAccount()));
         return dto;

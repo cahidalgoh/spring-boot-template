@@ -5,16 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TransactionDTO {
-    private Long id;
-    private String type;
+public class TransferRequestDTO {
+    private String cardNumber;
+    private String destinationIban;
     private BigDecimal amount;
-    private BigDecimal commission;
-    private LocalDateTime timestamp;
-    private AccountDTO account;
 }
